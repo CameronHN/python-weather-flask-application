@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="static/site.css" rel="stylesheet" type="text/css">
+    <title>Home</title>
+</head>
+<body>
+    <nav class="row" style="background: #337ab7;">
+        <table class="index_center_table">
+            <tr>
+                <th colspan="2"><a href="http://127.0.0.1:5000/home"><h1>Your Weather!</h1></a></th>
+            </tr>
+            <tr>
+                <td class="index_td_margin">
+                    <a href="http://127.0.0.1:5000/home"><p style="color: white;">Search by city</p></a>
+                </td>
+                <td class="index_td_margin">
+                    <a href="http://127.0.0.1:5000/countries"><p style="color: white;">Browse Countries</p></a>
+                </td>
+            </tr>
+        </table>
+    </nav>
+
+    <br>
+
+    <form method="post">
+        <label for="city"><p>Search city: </p></label>
+        <input type="text" id="city" name="city" autofocus required placeholder="e.g. Cape Town">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if city and current_temperature and description %}
+        <p>The current temperature in {{ city }} is <b>{{ current_temperature }}</b>°C.</p>
+        <p>Described as {{ description }}.</p>
+        <p>Today's weather is a minimum temperature of <b>{{ min_temp }}</b>°C and a maximum of <b>{{ max_temp }}</b>°C with winds of <b>{{ wind }}</b>km/h.</p>
+        <p><img src="http://openweathermap.org/img/wn/{{ wea_icon }}@2x.png" alt="Weather icon"></p>
+    {% elif city %}
+        <p>City not found. Please try again.</p>
+    {% endif %}
+
+</body>
+</html>
