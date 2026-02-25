@@ -28,7 +28,7 @@ def home():
         city = request.form['city']
 
         params = {'q': city,
-                  'app_id': os.getenv('api_key'),
+                  'appid': os.getenv('api_key'),
                   'units': 'metric'}
 
         response = requests.get(url, params=params)
